@@ -1,0 +1,31 @@
+class Solution:
+
+    def encode(self, strs: List[str]) -> str:
+        # encodes the string
+
+        encoding = ''
+        for s in strs:
+            n = len(s)
+            if n < 10:
+                n = f"00{n}"
+            elif n < 100:
+                n = f"0{n}"
+            else:
+                n = str(n)
+            encoding += n + s
+            
+        print(encoding)   
+        return encoding
+
+    def decode(self, s: str) -> List[str]:
+        # decodes the string
+
+        message = []
+        p = 0
+
+        while p < len(s):
+            n = int(s[p:p+3])
+            message.append(s[p+3:p+3+n])
+            p += n + 3
+
+        return message
